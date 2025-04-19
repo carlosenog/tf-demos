@@ -1,0 +1,31 @@
+# https://taskfile.dev/
+
+version: '3'
+
+interval: 1s
+
+tasks:
+  start_docker:
+    desc: Start Dockerd rootless-mode
+    cmds:
+      - dockerd-rootless
+  create_cluster_mk:
+    desc: Create Minikube Cluster
+    cmds:
+      - minikube start --driver=docker
+  delete_cluster_mk:
+    desc: Delete Minikube Cluster
+    cmds:
+      - minikube delete
+  prune_containers:
+    desc: Prune docker containers
+    cmds:
+      - docker system prune -a -f --volumes
+  test_docker:
+    desc: Docker run test
+    cmds:
+      - docker run hello-world
+  stop_docker:
+    desc: Stop Dockerd rootless-mode
+    cmds:
+      - pkill -9 rootlesskit

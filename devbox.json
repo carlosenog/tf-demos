@@ -1,0 +1,38 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.7/.schema/devbox.schema.json",
+  "packages": [
+    "go-task@3.40.1",
+    "minikube@1.34.0",
+    "docker@27.4.1",
+    "kubectl@1.32.0",
+    "kubernetes-helm@3.16.4",
+    "rootlesskit@2.3.1",
+    "gradle@8.12",
+    "maven@3.9.9",
+    "graalvm-ce@23.0.1",
+    "k9s@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to devbox!' > /dev/null",
+      "export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock"
+    ],
+    "scripts": {
+      "start_docker": [
+        "task start_docker &"
+      ],
+      "create_cluster_mk": [
+        "task create_cluster_mk"
+      ],
+      "delete_cluster_mk": [
+        "task delete_cluster_mk"
+      ],
+      "prune_containers": [
+        "task prune_containers"
+      ],
+      "stop_docker": [
+        "task stop_docker"
+      ]
+    }
+  }
+}
